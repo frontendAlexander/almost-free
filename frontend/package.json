@@ -30,5 +30,27 @@
     "react-apollo": "^2.3.1",
     "react-dom": "^16.6.3",
     "styled-components": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^3.1.1",
+    "graphql-tools": "^4.0.3"
+  },
+  "babel": {
+    "env": {
+      "development": {
+        "presets": [
+          "next/babel"
+        ],
+        "plugins": [
+          [
+            "styled-components",
+            {
+              "ssr": true,
+              "displayName": true
+            }
+          ]
+        ]
+      }
+    }
   }
 }
