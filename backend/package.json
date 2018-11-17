@@ -1,0 +1,35 @@
+{
+  "name": "almost-free-backend",
+  "description": "",
+  "scripts": {
+    "init": "prisma init",
+    "deploy": "prisma deploy --env-file .env",
+    "playground": "prisma playground"
+  },
+  "dependencies": {
+    "babel-preset-env": "latest",
+    "bcryptjs": "latest",
+    "cookie-parser": "latest",
+    "dotenv": "latest",
+    "graphql": "latest",
+    "graphql-cli": "latest",
+    "graphql-yoga": "latest",
+    "jsonwebtoken": "latest",
+    "nodemailer": "latest",
+    "nodemon": "latest",
+    "npm-run-all": "latest",
+    "prisma": "latest",
+    "prisma-binding": "latest",
+    "stripe": "latest"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frontendAlexander/almost-free.git"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  }
+}
