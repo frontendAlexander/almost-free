@@ -1,10 +1,7 @@
-import Link from 'next/link';
-
-const Home = () => {
+const Home = (props) => {
 	return (
 			<div className="">
-				<p>Home!</p>
-				
+				Каталог товаров
 			</div>
 		)
 }

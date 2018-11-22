@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
+import User from './User';
+import SignOut from './Signout';
 
 const Navigation = styled.div`
 	margin: 0;
@@ -28,14 +30,33 @@ const Navigation = styled.div`
 	      padding: 0 10px;
 	    }
 `
+const Nav = () => (
+  <User>
+    {({ data: { me } }) => (
+      <Navigation data-test="nav">
+        <Link href="/items">
+          <a>Магазин</a>
+        </Link>
+        {me && (
+          <>
+            <Link href="/sell">
+              <a>Продать</a>
+            </Link>
+            <Link href="/me">
+              <a>Личный кабинет</a>
+            </Link>
+            <SignOut/>
+          </>
+        )}
+        {!me && (
+          <Link href="/signup">
+            <a>Войти</a>
+          </Link>
 
-const Nav = () => {
-    return (
-    	<Navigation>
-    		<Link href="/"><a>Домашняя страница</a></Link>
-	        <Link href="/sell"><a>Продать</a></Link>
-	    </Navigation>
-    );
-};
+        )}
+      </Navigation>
+    )}
+  </User>
+);
 
 export default Nav;

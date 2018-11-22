@@ -3,7 +3,7 @@ import Link from 'next/link';
 const Sell = () => {
 	return (
 			<div className="">
-				<p>Sell!</p>
+				Добавление наименования в каталог продаж
 			</div>
 		)
 }
