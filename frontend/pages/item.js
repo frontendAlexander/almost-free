@@ -1,7 +1,9 @@
+import SingleItem from './components/SingleItem';
+
 const Item = (props) => {
 	return (
 			<div className="">
-				Карточка товаров
+				<SingleItem id={props.query.id} />
 			</div>
 		)
 }

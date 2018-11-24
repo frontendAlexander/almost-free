@@ -1,7 +1,7 @@
 const Home = (props) => {
 	return (
 			<div className="">
-				Каталог товаров
+				<Items page={parseFloat(props.query.page) || 1} />
 			</div>
 		)
 }

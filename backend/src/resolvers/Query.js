@@ -12,6 +12,9 @@ const Query = {
       info
     );
   },
+  item: forwardTo('db'),
+  items: forwardTo('db'),
+  itemsConnection: forwardTo('db'),
 };
 
 module.exports = Query;
