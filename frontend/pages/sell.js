@@ -1,9 +1,10 @@
 import Link from 'next/link';
+import CreateItem from './omponents/CreateItem';
 
 const Sell = () => {
 	return (
 			<div className="">
-				Добавление наименования в каталог продаж
+				<CreateItem />
 			</div>
 		)
 }

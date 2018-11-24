@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import Head from 'next/head';
 import Link from 'next/link';
-import PaginationStyles from './styles/PaginationStyles';
+import styled from 'styled-components';
 import { perPage } from '../config';
 
 const PAGINATION_QUERY = gql`
@@ -15,7 +15,17 @@ const PAGINATION_QUERY = gql`
     }
   }
 `;
-
+const PaginationStyles = styled.div`
+  text-align: center;
+  display: inline-grid;
+  grid-template-columns: repeat(4, auto);
+  align-items: stretch;
+  justify-content: center;
+  align-content: center;
+  margin: 2rem 0;
+  border: 1px solid ${props => props.theme.lightgrey};
+  border-radius: 10px;
+`;
 const Pagination = props => (
   <Query query={PAGINATION_QUERY}>
     {({ data, loading, error }) => {
