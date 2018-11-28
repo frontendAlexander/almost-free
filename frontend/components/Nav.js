@@ -42,6 +42,9 @@ const Nav = () => (
             <Link href="/sell">
               <a>Продать</a>
             </Link>
+            <Link href="/orders">
+              <a>Заказы</a>
+            </Link>
             <Link href="/me">
               <a>Личный кабинет</a>
             </Link>

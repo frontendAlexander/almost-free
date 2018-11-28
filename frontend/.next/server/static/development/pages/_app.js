@@ -342,7 +342,7 @@ var Nav = function Nav() {
       },
       __self: this
     }, "\u041F\u0440\u043E\u0434\u0430\u0442\u044C")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      href: "/me",
+      href: "/orders",
       __source: {
         fileName: _jsxFileName,
         lineNumber: 45
@@ -354,23 +354,36 @@ var Nav = function Nav() {
         lineNumber: 46
       },
       __self: this
-    }, "\u041B\u0438\u0447\u043D\u044B\u0439 \u043A\u0430\u0431\u0438\u043D\u0435\u0442")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Signout__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }, "\u0417\u0430\u043A\u0430\u0437\u044B")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+      href: "/me",
       __source: {
         fileName: _jsxFileName,
         lineNumber: 48
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 49
+      },
+      __self: this
+    }, "\u041B\u0438\u0447\u043D\u044B\u0439 \u043A\u0430\u0431\u0438\u043D\u0435\u0442")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Signout__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 51
       },
       __self: this
     })), !me && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
       href: "/signup",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 52
+        lineNumber: 55
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 53
+        lineNumber: 56
       },
       __self: this
     }, "\u0412\u043E\u0439\u0442\u0438")));
