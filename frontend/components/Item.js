@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import styled from 'styled-components';
+import DeleteItem from './DeleteItem';
 
 const Title = styled.h3`
   margin: 0 1rem;
@@ -19,7 +20,7 @@ const Title = styled.h3`
     padding: 0 1rem;
   }
 `;
-const Item = styled.div`
+const ItemStyle = styled.div`
   background: white;
   border: 1px solid ${props => props.theme.offWhite};
   box-shadow: ${props => props.theme.bs};
@@ -56,7 +57,7 @@ export default class Item extends Component {
   render() {
     const { item } = this.props;
     return (
-      <Item>
+      <ItemStyle>
         {item.image && <img src={item.image} alt={item.title} />}
 
         <Title>
@@ -81,8 +82,9 @@ export default class Item extends Component {
           >
             <a>Редактирование</a>
           </Link>
+          <DeleteItem id={item.id}>Удалить</DeleteItem>
         </div>
-      </Item>
+      </ItemStyle>
     );
   }
 }

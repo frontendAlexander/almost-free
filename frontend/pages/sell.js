@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import CreateItem from './omponents/CreateItem';
+import CreateItem from '../components/CreateItem';
 
 const Sell = () => {
 	return (

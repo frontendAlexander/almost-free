@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { randomBytes } = require('crypto');
+const { hasPermissions } = require('../utils');
 
 const Mutations = {
   async signup(parent, args, ctx, info) {
@@ -82,6 +83,95 @@ const Mutations = {
       },
       info
     );
+  },
+  async deleteItem(parent, args, ctx, info) {
+    const where = { id: args.id };
+    const item = await ctx.db.query.item({ where }, `{ id title user { id }}`);
+    const ownsItem = item.user.id === ctx.request.userId;
+    const hasPermissions = ctx.request.user.permissions.some(permission =>
+      ['ADMIN', 'ITEMDELETE', 'USER'].includes(permission)
+    );
+    if (!ownsItem && !hasPermissions) {
+      throw new Error("Нету прав для этого!");
+    }
+    return ctx.db.mutation.deleteItem({ where }, info);
+  },
+  async addToCart(parent, args, ctx, info) {
+    const { userId } = ctx.request;
+    if (!userId) {
+      throw new Error('Вы должны быть авторизованы!');
+    }
+    const [existingCartItem] = await ctx.db.query.cartItems({
+      where: {
+        user: { id: userId },
+        item: { id: args.id },
+      },
+    });
+    if (existingCartItem) {
+      return ctx.db.mutation.updateCartItem(
+        {
+          where: { id: existingCartItem.id },
+          data: { quantity: existingCartItem.quantity + 1 },
+        },
+        info
+      );
+    }
+    return ctx.db.mutation.createCartItem(
+      {
+        data: {
+          user: {
+            connect: { id: userId },
+          },
+          item: {
+            connect: { id: args.id },
+          },
+        },
+      },
+      info
+    );
+  },
+  async removeFromCart(parent, args, ctx, info) {
+    const cartItem = await ctx.db.query.cartItem(
+      {
+        where: {
+          id: args.id,
+        },
+      },
+      `{ id, user { id }}`
+    );
+    if (!cartItem) throw new Error('Наименование не найдено!');
+    if (cartItem.user.id !== ctx.request.userId) {
+      throw new Error('Ошибка запроса');
+    }
+    return ctx.db.mutation.deleteCartItem(
+      {
+        where: { id: args.id },
+      },
+      info
+    );
+  },
+  async requestReset(parent, args, ctx, info) {
+    const user = await ctx.db.query.user({ where: { email: args.email } });
+    if (!user) {
+      throw new Error(`Возможно не правильно указаны данные пользователя ${args.email}`);
+    }
+    const randomBytesPromiseified = promisify(randomBytes);
+    const resetToken = (await randomBytesPromiseified(20)).toString('hex');
+    const resetTokenExpiry = Date.now() + 1800000;
+    const res = await ctx.db.mutation.updateUser({
+      where: { email: args.email },
+      data: { resetToken, resetTokenExpiry },
+    });
+    const mailRes = await transport.sendMail({
+      from: 'almost@free',
+      to: user.email,
+      subject: 'Ваш код для сброса пароля',
+      html: makeANiceEmail(`Код для сброса пароля тут
+      \n\n
+      <a href="${process.env
+        .FRONTEND_URL}/reset?resetToken=${resetToken}">Нажмите, чтобы сбросить</a>`),
+    });
+    return { message: 'Спасибо!' };
   },
 };
 

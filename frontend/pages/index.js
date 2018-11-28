@@ -1,3 +1,5 @@
+import Items from '../components/Items';
+
 const Home = (props) => {
 	return (
 			<div className="">

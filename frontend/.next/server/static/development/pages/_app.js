@@ -119,7 +119,7 @@ var _jsxFileName = "/home/gav/Projects/react/almost-free/frontend/components/Hea
 
 
 
-
+ //import Cart from './Cart';
 
 next_router__WEBPACK_IMPORTED_MODULE_4___default.a.onRouteChangeStart = function () {
   nprogress__WEBPACK_IMPORTED_MODULE_5___default.a.start();
@@ -152,56 +152,56 @@ var Header = function Header() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(StyledHeader, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 60
+      lineNumber: 61
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bar",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 61
+      lineNumber: 62
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Logo, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 62
+      lineNumber: 63
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 63
+      lineNumber: 64
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 64
+      lineNumber: 65
     },
     __self: this
   }, "Almost Free"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Nav__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 67
+      lineNumber: 68
     },
     __self: this
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sub__search",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 69
+      lineNumber: 70
     },
     __self: this
   }, "\u041F\u043E\u0438\u0441\u043A"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sub__cart",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 72
+      lineNumber: 73
     },
     __self: this
-  }, "\u041A\u043E\u0440\u0437\u0438\u043D\u0430"));
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Header);
@@ -720,6 +720,31 @@ function createClient(_ref) {
         },
         headers: headers
       });
+    },
+    clientState: {
+      resolvers: {
+        Mutation: {
+          toggleCart: function toggleCart(_, variables, _ref2) {
+            var cache = _ref2.cache;
+
+            var _cache$readQuery = cache.readQuery({
+              query: LOCAL_STATE_QUERY
+            }),
+                cartOpen = _cache$readQuery.cartOpen;
+
+            var data = {
+              data: {
+                cartOpen: !cartOpen
+              }
+            };
+            cache.writeData(data);
+            return data;
+          }
+        }
+      },
+      defaults: {
+        cartOpen: false
+      }
     }
   });
 }
