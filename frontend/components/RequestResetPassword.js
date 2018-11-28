@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
-import Form from './styles/Form';
+import Form from './reuseStyles/Form';
 import Error from './ErrorMessage';
 
 const REQUEST_RESET_PASSWORD_MUTATION = gql`
   mutation REQUEST_RESET_PASSWORD_MUTATION($email: String!) {
-    resetPassword(email: $email) {
+    requestResetPassword(email: $email) {
       message
     }
   }
 `;
-class ResetPassword extends Component {
+class RequestResetPassword extends Component {
   state = {
     email: '',
   };
@@ -55,5 +55,5 @@ class ResetPassword extends Component {
   }
 }
 
-export default ResetPassword;
+export default RequestResetPassword;
 export { REQUEST_RESET_PASSWORD_MUTATION };

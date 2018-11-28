@@ -150,7 +150,7 @@ const Mutations = {
       info
     );
   },
-  async requestReset(parent, args, ctx, info) {
+  async requestResetPassword(parent, args, ctx, info) {
     const user = await ctx.db.query.user({ where: { email: args.email } });
     if (!user) {
       throw new Error(`Возможно не правильно указаны данные пользователя ${args.email}`);
@@ -172,6 +172,35 @@ const Mutations = {
         .FRONTEND_URL}/reset?resetToken=${resetToken}">Нажмите, чтобы сбросить</a>`),
     });
     return { message: 'Спасибо!' };
+  },
+  async responseResetPassword(parent, args, ctx, info) {
+    if (args.password !== args.confirmPassword) {
+      throw new Error("Пароли не совпадают!");
+    }
+    const [user] = await ctx.db.query.users({
+      where: {
+        resetToken: args.resetToken,
+        resetTokenExpiry_gte: Date.now() - 1800000,
+      },
+    });
+    if (!user) {
+      throw new Error('Токен невалиден');
+    }
+    const password = await bcrypt.hash(args.password, 10);
+    const updatedUser = await ctx.db.mutation.updateUser({
+      where: { email: user.email },
+      data: {
+        password,
+        resetToken: null,
+        resetTokenExpiry: null,
+      },
+    });
+    const token = jwt.sign({ userId: updatedUser.id }, process.env.APP_SECRET);
+    ctx.response.cookie('token', token, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 365,
+    });
+    return updatedUser;
   },
 };
 

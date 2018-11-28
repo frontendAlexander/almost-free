@@ -1,6 +1,6 @@
 import Signup from '../components/Signup';
 import Signin from '../components/Signin';
-import ResetPassword from '../components/ResetPassword';
+import ResetPassword from '../components/RequestResetPassword';
 import styled from 'styled-components';
 
 const Columns = styled.div`
