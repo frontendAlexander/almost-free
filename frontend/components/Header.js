@@ -4,6 +4,7 @@ import Nav from './Nav';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import Cart from './Cart';
+import Search from './Search';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -68,7 +69,7 @@ const Header = () => (
       <Nav />
     </div>
     <div className="sub__search">
-      Поиск
+      <Search/>
     </div>
     <div className="sub__cart">
     </div>
