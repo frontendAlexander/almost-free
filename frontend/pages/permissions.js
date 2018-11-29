@@ -1,7 +1,7 @@
 import IsAuth from '../components/hoc/IsAuth';
 import Permissions from '../components/Permissions';
 
-const PermissionsPage = props => (
+const PermissionPage = props => (
   <div>
     <IsAuth>
       <Permissions />
@@ -9,4 +9,4 @@ const PermissionsPage = props => (
   </div>
 );
 
-export default PermissionsPage;
+export default PermissionPage;

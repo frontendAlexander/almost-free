@@ -5,14 +5,12 @@ import { ApolloConsumer } from 'react-apollo';
 import gql from 'graphql-tag';
 import debounce from 'lodash.debounce';
 import styled, { keyframes } from 'styled-components';
-
 const DropDown = styled.div`
   position: absolute;
   width: 100%;
   z-index: 2;
   border: 1px solid ${props => props.theme.lightgrey};
 `;
-
 const DropDownItem = styled.div`
   border-bottom: 1px solid ${props => props.theme.lightgrey};
   background: ${props => (props.highlighted ? '#f7f7f7' : 'white')};
@@ -26,7 +24,6 @@ const DropDownItem = styled.div`
     margin-right: 10px;
   }
 `;
-
 const glow = keyframes`
   from {
     box-shadow: 0 0 0px yellow;
@@ -36,7 +33,6 @@ const glow = keyframes`
     box-shadow: 0 0 10px 1px yellow;
   }
 `;
-
 const SearchStyles = styled.div`
   position: relative;
   input {
@@ -49,8 +45,6 @@ const SearchStyles = styled.div`
     }
   }
 `;
-
-
 const SEARCH_ITEMS_QUERY = gql`
   query SEARCH_ITEMS_QUERY($searchTerm: String!) {
     items(where: { OR: [{ title_contains: $searchTerm }, { description_contains: $searchTerm }] }) {
@@ -60,7 +54,6 @@ const SEARCH_ITEMS_QUERY = gql`
     }
   }
 `;
-
 function routeToItem(item) {
   Router.push({
     pathname: '/item',
@@ -68,15 +61,14 @@ function routeToItem(item) {
       id: item.id,
     },
   });
-}
-
+};
 class AutoComplete extends React.Component {
   state = {
     items: [],
     loading: false,
   };
   onChange = debounce(async (e, client) => {
-    console.log('Searching...');
+    console.log('Поиск...');
     this.setState({ loading: true });
     const res = await client.query({
       query: SEARCH_ITEMS_QUERY,

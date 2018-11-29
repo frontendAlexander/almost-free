@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import styled from 'styled-components';
 import DeleteItem from './DeleteItem';
+import AddToCart from './AddToCart';
 
 const Title = styled.h3`
   margin: 0 1rem;
@@ -82,6 +83,7 @@ export default class Item extends Component {
           >
             <a>Редактирование</a>
           </Link>
+          <AddToCart id={item.id}/>
           <DeleteItem id={item.id}>Удалить</DeleteItem>
         </div>
       </ItemStyle>

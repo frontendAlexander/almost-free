@@ -11,6 +11,12 @@ const Navigation = styled.div`
 	  display: flex;
 	  justify-self: center;
 	  font-size: 2rem;
+    @media (max-width: 300px) {
+        display: inline-block;
+        position: relative;
+        font-size: 10px;
+        padding: 0 10px;
+      }
 	  a,
 	  button {
 	    padding: 1rem 3rem;

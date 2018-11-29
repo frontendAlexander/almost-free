@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import gql from 'graphql-tag';
 import Error from './ErrorMessage';
 import formatMoney from '../lib/formattingMoney';
-const OrderList = styled.ul`
+const Orders = styled.ul`
   display: grid;
   grid-gap: 4rem;
   grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
@@ -72,10 +72,10 @@ class OrderList extends React.Component {
           if (error) return <Error erorr={error} />;
           return (
             <div>
-              <h2>You have {orders.length} orders</h2>
-              <OrderList>
+              <h2>У вас {orders.length} заказов</h2>
+              <Orders>
                 {orders.map(order => (
-                  <OrderItemkey={order.id}>
+                  <OrderItem key={order.id}>
                     <Link
                       href={{
                         pathname: '/order',
@@ -96,9 +96,9 @@ class OrderList extends React.Component {
                         </div>
                       </a>
                     </Link>
-                  </OrderItem
+                  </OrderItem>
                 ))}
-              </OrderList>
+              </Orders>
             </div>
           );
         }}

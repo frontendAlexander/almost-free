@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { randomBytes } = require('crypto');
-const { hasPermissions } = require('../utils');
+const { hasPermission } = require('../utils.js');
 
 const Mutations = {
   async signup(parent, args, ctx, info) {
@@ -215,33 +215,6 @@ const Mutations = {
       info
     );
     hasPermission(currentUser, ['ADMIN', 'PERMISSIONUPDATE', 'USER']);
-    return ctx.db.mutation.updateUser(
-      {
-        data: {
-          permissions: {
-            set: args.permissions,
-          },
-        },
-        where: {
-          id: args.userId,
-        },
-      },
-      info
-    );
-  },
-  async updatePermissions(parent, args, ctx, info) {
-    if (!ctx.request.userId) {
-      throw new Error('Вы должны быть авторизованы!');
-    }
-    const currentUser = await ctx.db.query.user(
-      {
-        where: {
-          id: ctx.request.userId,
-        },
-      },
-      info
-    );
-    hasPermission(currentUser, ['ADMIN', 'PERMISSIONUPDATE','USER']);
     return ctx.db.mutation.updateUser(
       {
         data: {

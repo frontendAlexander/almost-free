@@ -7,6 +7,10 @@ import Button from './reuseStyles/Button';
 import CartItem from './CartItem';
 import calcTotalPrice from '../lib/sum';
 import formatMoney from '../lib/formattingMoney';
+import styled from 'styled-components';
+import Payment from './Payment';
+import CartCounter from './CartCounter';
+
 const CartStyle = styled.div`
   padding: 20px;
   position: relative;
@@ -50,6 +54,10 @@ const CartStyle = styled.div`
     overflow: scroll;
   }
 `;
+const CartCounterStyle = styled.div`
+  height: 20px;
+  width: 20px;
+`
 const Close = styled.button`
     background: black;
     color: white;
@@ -87,26 +95,34 @@ const Cart = () => (
   <Composed>
     {( { user, toggleCart, localState } ) => {
       const me = user.data.me;
+      const cart = user.client.cache.data.data.ROOT_QUERY.cartOpen;
       if (!me) return null;
       return (
-        <CartStyle open={localState.data.cartOpen}>
+        <div>
+        <CartCounterStyle>
+          <CartCounter count={me.cart.length}/>
+        </CartCounterStyle>
+        <CartStyle open={cart}>
           <header>
             <Close onClick={toggleCart} title="закрыть">
               &times;
             </Close>
-            <CartIcon>{me.name}'s Корзина</CartIcon>
+            <CartIcon>{me.name} Корзина</CartIcon>
             <p>
-              У вас {me.cart.length} наименовани {me.cart.length === 1 ? 'е' : 'й'} в корзине.
+              У вас {me.cart.length} наименовани {me.cart.length === 1 ? 'я' : 'й'} в корзине.
             </p>
           </header>
           <ul>{me.cart.map(cartItem => <CartItem key={cartItem.id} cartItem={cartItem} />)}</ul>
           <footer>
             <p>{formatMoney(calcTotalPrice(me.cart))}</p>
             {me.cart.length && (
+              <Payment>
                 <Button>Купить</Button>
+              </Payment>
               )}
           </footer>
         </CartStyle>
+        </div>
       );
     }}
   </Composed>

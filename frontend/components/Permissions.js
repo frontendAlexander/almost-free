@@ -3,6 +3,7 @@ import Error from './ErrorMessage';
 import gql from 'graphql-tag';
 import Button from './reuseStyles/Button';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 const Table = styled.div`
   border-spacing: 0;
   width: 100%;
@@ -67,16 +68,16 @@ const ALL_USERS_QUERY = gql`
 
 const Permissions = props => (
   <Query query={ALL_USERS_QUERY}>
-    {({ data, loading, error }) => (
+    {( { data, loading, error } ) => (
       <div>
         <Error error={error} />
         <div>
-          <h2>Manage Permissions</h2>
+          <h2>Управление правами пользователей</h2>
           <Table>
             <thead>
               <tr>
-                <th>Имя</th>
-                <th>Почта</th>
+                <th>Name</th>
+                <th>Email</th>
                 {possiblePermissions.map(permission => <th key={permission}>{permission}</th>)}
                 <th>👇🏻</th>
               </tr>
@@ -141,9 +142,9 @@ class UserPermissions extends React.Component {
                 </td>
               ))}
               <td>
-                <SickButton type="button" disabled={loading} onClick={updatePermissions}>
+                <Button type="button" disabled={loading} onClick={updatePermissions}>
                   Обновл{loading ? 'ется' : 'ено'}
-                </SickButton>
+                </Button>
               </td>
             </tr>
           </>
