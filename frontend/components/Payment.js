@@ -54,7 +54,7 @@ class Payment extends React.Component {
                 <StripeCheckout
                   amount={calcTotalPrice(me.cart)}
                   name="Almost Free"
-                  description={`Заказ на ${totalItems(me.cart)} наименований!`}
+                  description={`Заказ в колличестве ${totalItems(me.cart)} наименований!`}
                   image={me.cart.length && me.cart[0].item && me.cart[0].item.image}
                   stripeKey="pk_test_wDeKr3knbLvZk4EGz1RnDUGG"
                   currency="USD"

@@ -1,7 +1,10 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { randomBytes } = require('crypto');
-const { hasPermission } = require('../utils.js');
+const { promisify } = require('util');
+const { transport, makeANiceEmail } = require('../mail');
+const { hasPermission } = require('../utils');
+const stripe = require('../stripe');
 
 const Mutations = {
   async signup(parent, args, ctx, info) {

@@ -53,9 +53,9 @@ const Pagination = props => (
           </Link>
           <p>
             Страниц {props.page} из
-            <span className="totalPages">{pages}</span>!
+            <span className="totalPages"> {pages}</span>!
           </p>
-          <p> {count} Наименований</p>
+          
           <Link
             prefetch
             href={{

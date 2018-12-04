@@ -30,7 +30,7 @@ const AnimationStyles = styled.span`
 
 const Dot = styled.div`
   background: green;
-  z-index: 6;
+  z-index: 4;
   color: white;
   border-radius: 50%;
   padding: 0.5rem;
@@ -60,6 +60,6 @@ const CartCount = ({ count }) => (
 );
 
 CartCount.propTypes = {
-  count: PropTypes.number.isRequired,
+  count: PropTypes.number,
 };
 export default CartCount;

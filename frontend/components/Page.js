@@ -94,22 +94,3 @@ class Page extends Component {
 }
 
 export default Page;
-
-/*
-@font-face {
-    font-family: 'roboto';
-
-    src: url('/static/roboto-v18-cyrillic_latin-regular.eot');
-    src: url('/static/roboto-v18-cyrillic_latin-regular.eot?iefix) format('eot');
-
-    
-    url('/static/roboto-v18-cyrillic_latin-regular.woff2') format('woff');
-
-    url('/static/roboto-v18-cyrillic_latin-regular.woff2') format('woff2');
-    url('/static/roboto-v18-cyrillic_latin-regular.svg') format('svg');
-
-    font-weight: normal;
-
-    font-style: normal;
-  }
-  */

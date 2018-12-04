@@ -55,8 +55,7 @@ const CartStyle = styled.div`
   }
 `;
 const CartCounterStyle = styled.div`
-  height: 20px;
-  width: 20px;
+  
 `
 const Close = styled.button`
     background: black;
@@ -94,15 +93,17 @@ const Composed = adopt({
 const Cart = () => (
   <Composed>
     {( { user, toggleCart, localState } ) => {
-      const me = user.data.me;
-      const cart = user.client.cache.data.data.ROOT_QUERY.cartOpen;
+      const me = user ? user.data.me : null;
+      //const cartCount = user.data.me.cart[0].quantity;
+      const count = !me ? 0 : me.cart[0].quantity;
+      
       if (!me) return null;
       return (
         <div>
-        <CartCounterStyle>
-          <CartCounter count={me.cart.length}/>
+        <CartCounterStyle role="button" onClick={toggleCart}>
+          <CartCounter count={count}/>
         </CartCounterStyle>
-        <CartStyle open={cart}>
+        <CartStyle open={localState.data.cartOpen}>
           <header>
             <Close onClick={toggleCart} title="закрыть">
               &times;

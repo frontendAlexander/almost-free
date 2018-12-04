@@ -170,7 +170,7 @@ var CartStyle = styled_components__WEBPACK_IMPORTED_MODULE_9___default.a.div.wit
 var CartCounterStyle = styled_components__WEBPACK_IMPORTED_MODULE_9___default.a.div.withConfig({
   displayName: "Cart__CartCounterStyle",
   componentId: "x4z3w6-1"
-})(["height:20px;width:20px;"]);
+})([""]);
 var Close = styled_components__WEBPACK_IMPORTED_MODULE_9___default.a.button.withConfig({
   displayName: "Cart__Close",
   componentId: "x4z3w6-2"
@@ -189,7 +189,7 @@ var Composed = Object(react_adopt__WEBPACK_IMPORTED_MODULE_3__["adopt"])({
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_User__WEBPACK_IMPORTED_MODULE_4__["default"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 90
+        lineNumber: 89
       },
       __self: this
     }, render);
@@ -200,7 +200,7 @@ var Composed = Object(react_adopt__WEBPACK_IMPORTED_MODULE_3__["adopt"])({
       mutation: TOGGLE_CART_MUTATION,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 91
+        lineNumber: 90
       },
       __self: this
     }, render);
@@ -211,7 +211,7 @@ var Composed = Object(react_adopt__WEBPACK_IMPORTED_MODULE_3__["adopt"])({
       query: LOCAL_STATE_QUERY,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 92
+        lineNumber: 91
       },
       __self: this
     }, render);
@@ -222,46 +222,49 @@ var Cart = function Cart() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Composed, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 95
+      lineNumber: 94
     },
     __self: this
   }, function (_ref4) {
     var user = _ref4.user,
         toggleCart = _ref4.toggleCart,
         localState = _ref4.localState;
-    var me = user.data.me;
-    var cart = user.client.cache.data.data.ROOT_QUERY.cartOpen;
+    var me = user ? user.data.me : null; //const cartCount = user.data.me.cart[0].quantity;
+
+    var count = !me ? 0 : me.cart[0].quantity;
     if (!me) return null;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 101
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CartCounterStyle, {
       __source: {
         fileName: _jsxFileName,
         lineNumber: 102
       },
       __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CartCounter__WEBPACK_IMPORTED_MODULE_11__["default"], {
-      count: me.cart.length,
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CartCounterStyle, {
+      role: "button",
+      onClick: toggleCart,
       __source: {
         fileName: _jsxFileName,
         lineNumber: 103
       },
       __self: this
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CartStyle, {
-      open: cart,
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CartCounter__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      count: count,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 105
+        lineNumber: 104
+      },
+      __self: this
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CartStyle, {
+      open: localState.data.cartOpen,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 106
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 106
+        lineNumber: 107
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Close, {
@@ -269,25 +272,25 @@ var Cart = function Cart() {
       title: "\u0437\u0430\u043A\u0440\u044B\u0442\u044C",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 107
+        lineNumber: 108
       },
       __self: this
     }, "\xD7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CartIcon, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 110
+        lineNumber: 111
       },
       __self: this
     }, me.name, " \u041A\u043E\u0440\u0437\u0438\u043D\u0430"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 111
+        lineNumber: 112
       },
       __self: this
     }, "\u0423 \u0432\u0430\u0441 ", me.cart.length, " \u043D\u0430\u0438\u043C\u0435\u043D\u043E\u0432\u0430\u043D\u0438 ", me.cart.length === 1 ? 'я' : 'й', " \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0435.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 115
+        lineNumber: 116
       },
       __self: this
     }, me.cart.map(function (cartItem) {
@@ -296,32 +299,32 @@ var Cart = function Cart() {
         cartItem: cartItem,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 115
+          lineNumber: 116
         },
         __self: this
       });
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 116
+        lineNumber: 117
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 117
+        lineNumber: 118
       },
       __self: this
     }, Object(_lib_formattingMoney__WEBPACK_IMPORTED_MODULE_8__["default"])(Object(_lib_sum__WEBPACK_IMPORTED_MODULE_7__["default"])(me.cart))), me.cart.length && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Payment__WEBPACK_IMPORTED_MODULE_10__["default"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 119
+        lineNumber: 120
       },
       __self: this
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reuseStyles_Button__WEBPACK_IMPORTED_MODULE_5__["default"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 120
+        lineNumber: 121
       },
       __self: this
     }, "\u041A\u0443\u043F\u0438\u0442\u044C")))));
@@ -362,7 +365,7 @@ var AnimationStyles = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.s
 var Dot = styled_components__WEBPACK_IMPORTED_MODULE_3___default.a.div.withConfig({
   displayName: "CartCounter__Dot",
   componentId: "apfs8z-1"
-})(["background:green;z-index:6;color:white;border-radius:50%;padding:0.5rem;line-height:2rem;min-width:3rem;margin-left:1rem;font-weight:100;font-feature-settings:'tnum';font-variant-numeric:tabular-nums;padding-left:10px;"]);
+})(["background:green;z-index:4;color:white;border-radius:50%;padding:0.5rem;line-height:2rem;min-width:3rem;margin-left:1rem;font-weight:100;font-feature-settings:'tnum';font-variant-numeric:tabular-nums;padding-left:10px;"]);
 
 var CartCount = function CartCount(_ref) {
   var count = _ref.count;
@@ -402,7 +405,7 @@ var CartCount = function CartCount(_ref) {
 };
 
 CartCount.propTypes = {
-  count: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number.isRequired
+  count: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number
 };
 /* harmony default export */ __webpack_exports__["default"] = (CartCount);
 
@@ -1067,24 +1070,6 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Page);
-/*
-@font-face {
-    font-family: 'roboto';
-
-    src: url('/static/roboto-v18-cyrillic_latin-regular.eot');
-    src: url('/static/roboto-v18-cyrillic_latin-regular.eot?iefix) format('eot');
-
-    
-    url('/static/roboto-v18-cyrillic_latin-regular.woff2') format('woff');
-
-    url('/static/roboto-v18-cyrillic_latin-regular.woff2') format('woff2');
-    url('/static/roboto-v18-cyrillic_latin-regular.svg') format('svg');
-
-    font-weight: normal;
-
-    font-style: normal;
-  }
-  */
 
 /***/ }),
 
@@ -1269,7 +1254,7 @@ function (_React$Component) {
           return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_stripe_checkout__WEBPACK_IMPORTED_MODULE_2___default.a, {
             amount: Object(_lib_sum__WEBPACK_IMPORTED_MODULE_8__["default"])(me.cart),
             name: "Almost Free",
-            description: "\u0417\u0430\u043A\u0430\u0437 \u043D\u0430 ".concat(totalItems(me.cart), " \u043D\u0430\u0438\u043C\u0435\u043D\u043E\u0432\u0430\u043D\u0438\u0439!"),
+            description: "\u0417\u0430\u043A\u0430\u0437 \u0432 \u043A\u043E\u043B\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u0435 ".concat(totalItems(me.cart), " \u043D\u0430\u0438\u043C\u0435\u043D\u043E\u0432\u0430\u043D\u0438\u0439!"),
             image: me.cart.length && me.cart[0].item && me.cart[0].item.image,
             stripeKey: "pk_test_wDeKr3knbLvZk4EGz1RnDUGG",
             currency: "USD",
@@ -1678,7 +1663,7 @@ function (_React$Component) {
         }, function (client) {
           return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", _extends({}, getInputProps({
             type: 'search',
-            placeholder: 'Поиск наименования',
+            placeholder: 'Поиск',
             id: 'search',
             className: _this2.state.loading ? 'загружается' : '',
             onChange: function onChange(e) {
@@ -1931,6 +1916,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return calcTotalPrice; });
 function calcTotalPrice(cart) {
+  if (cart === null || cart === undefined) return 0;
   return cart.reduce(function (tally, cartItem) {
     if (!cartItem.item) return tally;
     return tally + cartItem.quantity * cartItem.item.price;
